@@ -171,7 +171,7 @@
 									<a class="btn btn-danger default ajaxLink" data-role="delete"
 									   <c:if test="${g.status!='NEW' }">disabled="disabled"</c:if>
 									   href="<c:url value='/delivery/remove.json?id=${g.id}' /> "><span class="fa fa-trash fa-fw" aria-hidden="true"></span>删除</a>
-
+									<a class="btn btn-warning " href="<c:url value='/securityCode/scan_num.html?owner=${g.userByConsignee.realName}&&agentCode=${g.userByConsignee.agentCode}' /> ">录入防伪</a>
 								</td>
 							</tr>
 						</c:forEach>
