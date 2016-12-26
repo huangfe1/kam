@@ -6,6 +6,7 @@ import com.dreamer.domain.pmall.order.OrderItem;
 import com.dreamer.domain.user.Agent;
 import com.dreamer.repository.mall.goods.MallGoodsDAO;
 import com.dreamer.repository.pmall.order.OrderDAO;
+import com.dreamer.repository.user.AgentDAO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,8 +33,8 @@ public class OrderCommitHandler {
 				item.setOrder(order);
 				order.addItem(item);
 			});
-			//释放内存
 			order.commit(agent);
+            agentDAO.save(agent);
 			orderDAO.save(order);
 //			order.getItems().clear();//释放空间
 //			order=null;
@@ -53,6 +54,8 @@ public class OrderCommitHandler {
 	
 	@Autowired
 	private OrderDAO orderDAO;
+	@Autowired
+	private AgentDAO agentDAO;
     @Autowired
     private MallGoodsDAO mallGoodsDAO;
 	

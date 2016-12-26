@@ -144,13 +144,12 @@ public class Order implements java.io.Serializable {
 		this.paymentWay=paymentWay;
 		paymentStatus=PaymentStatus.PAID;
 		paymentTime=new Date();
-        //加上积分购买
+        //加上置换券购买
 		StringBuffer  moreStr=new StringBuffer();
 		getItems().values().stream().forEach(p -> {
            String more= "购买" + p.getGoodsName() + "-数量:" + p.getQuantity() + "/";
             moreStr.append(more);
         });
-        System.out.println();
         user.getAccounts().deductAdvance(getTotalPoints(),moreStr.toString());
 	}
 	

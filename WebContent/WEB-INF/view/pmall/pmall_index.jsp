@@ -342,7 +342,7 @@
                                     '<h5><strong>'+data.name+'</strong></h5>'+
                                     '<h6>'+data.spec+'</h6>'+
 														'<h6><span class="fa fa-rmb"></span>'+data.pointPrice+'置换券</h6>'+
-//                                    '<h6><span class="fa fa-rmb"></span>'+data.moneyPrice+'</h6>'+
+                                    '<h6><span class="fa fa-rmb"></span>'+data.moneyPrice+'现金</h6>'+
                                     '<h6><del><small class="text-muted">原价:'+data.price+'</small></del></h6>'+
 //                                    '<h6><span class="fa fa-rmb">分享利润:</span>'+data.vouchers.substring(0,6)+'</h6>'+
                                     '<h6><a href="#" class="btn btn-link buyBtn pull-right" style="color:red!important;" role="button" data-id='+data.id+

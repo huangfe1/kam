@@ -72,7 +72,7 @@ a:hover {
 	white-space: nowrap;
 }
 .quantity{
-width:2em !important;
+width:6em !important;
 text-align:center;
 padding:2px;
 }
@@ -137,7 +137,7 @@ width:auto !important;
 				<table class="table">
 					<thead>
 						<tr>
-							<th>商品</th><th>置换券单价</th><th>数量</th><th>置换券总额</th>
+							<th>商品</th><th>所需现金</th><th>所需置换券</th><th>数量</th><th>现金总额</th><th>置换券总额</th>
 							<%--<th>所需积分</th>--%>
 							<th>操作</th>
 						</tr>
@@ -149,7 +149,7 @@ width:auto !important;
 										src="<c:url value='${imgPath}${item.value.goods.imgFile}'/>"
 										class="img-responsive img-thumbnail" style="max-width:50px;"
 										alt="商品图片"></td>
-									<%--<td class="price">${item.value.moneyPrice}</td>--%>
+									<td class="price">${item.value.moneyPrice}</td>
 									<td class="pointsPrice">${item.value.pointsPrice}</td>
 									<td>
 										<div class="input-group">
@@ -162,7 +162,7 @@ width:auto !important;
 											</span>
 										</div>
 									</td>
-									<%--<td class="amount">${item.value.pointsAmount}</td>--%>
+									<td class="amount">${item.value.moneyAmount}</td>
 									<td class="pointsAmount">${item.value.pointsAmount}</td>
 									<td><button class="btn btn-danger btn-xs removeBtn"
 											data-id="${item.value.goods.id}">删除</button></td>
@@ -171,9 +171,9 @@ width:auto !important;
 						</tbody>
 						<tfoot>
 						<tr>
-							<td colspan="2">合计</td>
+							<td colspan="3">合计</td>
 							<td id="totalQuantity"></td>
-							<%--<td id="totalAmount"></td>--%>
+							<td id="totalAmount"></td>
 							<td id="totalPoints"></td>
 							<td></td>
 						</tr>
@@ -367,7 +367,7 @@ width:auto !important;
 			function calcRow(tr){
 				var price=tr.find(".price").text(),quantity=tr.find(".quantity").val(),amount=tr.find(".amount"),
 				pointsPrice=tr.find(".pointsPrice").text(),poinstAmount=tr.find(".pointsAmount");
-//				amount.text(Number(parseFloat(price)*parseInt(quantity)).toFixed(2));
+				amount.text(Number(parseFloat(price)*parseInt(quantity)).toFixed(2));
 				poinstAmount.text(Number(parseFloat(pointsPrice)*parseInt(quantity)).toFixed(0));
 			}
 			function calcTotal(){
@@ -382,7 +382,7 @@ width:auto !important;
 					totalPointsAmount+=parseFloat($(d).text());
 				});
 				$("#totalQuantity").text(totalQuantity);
-//				$("#totalAmount").text(totalPointsAmount);
+				$("#totalAmount").text(totalAmount);
 				$("#totalPoints").text(totalPointsAmount);
 			}
 		});

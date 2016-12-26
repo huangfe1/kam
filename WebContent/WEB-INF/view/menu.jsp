@@ -113,9 +113,9 @@ th {
 									<%--class="fa fa-money fa-fw"></i>转代金券记录<span class="fa arrow"></span></a></li>--%>
 
 							<%--<!-- 转代金券 -->--%>
-							<%--<li><a--%>
-									<%--href="<c:url value='/advance/my.html'/>"><i--%>
-									<%--class="fa fa-money fa-fw"></i>转置换券记录<span class="fa arrow"></span></a></li>--%>
+							<li><a
+									href="<c:url value='/advance/my.html'/>"><i
+									class="fa fa-money fa-fw"></i>转置换券<span class="fa arrow"></span></a></li>
 
 									<%--<!-- 代金券记录 -->--%>
 										<%--<li><a--%>
@@ -123,14 +123,14 @@ th {
 									<%--class="fa fa-money fa-fw"></i>代金券详情<span class="fa arrow"></span></a></li>--%>
 
 
-							<%--<!-- 置换券详情 -->--%>
-							<%--<li><a--%>
-									<%--href="<c:url value='/advance/record.html'/>"><i--%>
-									<%--class="fa fa-money fa-fw"></i>置换券详情<span class="fa arrow"></span></a></li>--%>
-								<%-- <li><a
-								href="<c:url value='/points/my.html'/>"><i
-									class="fa fa-user fa-fw"></i>积分转让<span class="fa arrow"></span></a></li> --%>
-						</ul></li>
+							<!-- 置换券详情 -->
+							<li><a
+									href="<c:url value='/advance/record.html'/>"><i
+									class="fa fa-money fa-fw"></i>置换券详情<span class="fa arrow"></span></a></li>
+								 <%--<li><a--%>
+								<%--href="<c:url value='/points/my.html'/>"><i--%>
+									<%--class="fa fa-user fa-fw"></i>积分转让<span class="fa arrow"></span></a></li> &ndash;%&gt;--%>
+						<%--</ul></li>--%>
 					<li><a href="#" class="menuitem"><i
 							class="fa fa-sitemap fa-fw"></i> 货物管理<span class="fa arrow"></span></a>
 						<ul class="nav nav-second-level">

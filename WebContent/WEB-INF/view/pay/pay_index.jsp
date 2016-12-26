@@ -86,38 +86,66 @@ border-color: #d9534f;
 </head>
 <script type="text/javascript">
 
+	var jp=${jsapiParamJson}
+
+    wx.config({
+        debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+        appId: jp.appId, // 必填，公众号的唯一标识
+        timestamp: jp.timeStamp, // 必填，生成签名的时间戳  这里是大写与其他地方不一样
+        nonceStr: jp.nonceStr, // 必填，生成签名的随机串
+        signature: jp.signature,// 必填，签名，见附录1
+        jsApiList: [
+            'chooseWXPay'
+        ]
+    });
+
+
+
+    function callpay() {
+        wx.chooseWXPay({
+            timestamp: jp.timeStamp, // 支付签名时间戳，注意微信jssdk中的所有使用timestamp字段均为小写。但最新版的支付后台生成签名使用的timeStamp字段名需大写其中的S字符
+            nonceStr: jp.nonceStr, // 支付签名随机串，不长于 32 位
+            package: jp.package, // 统一支付接口返回的prepay_id参数值，提交格式如：prepay_id=***）
+            signType: jp.signType, // 签名方式，默认为'SHA1'，使用新版支付需传入'MD5'
+            paySign: jp.paySign, // 支付签名
+            success: function (res) {
+                // 支付成功后的回调函数
+            }
+        });
+    }
+
 //调用微信JS api 支付
-function onBridgeReady(){
-   WeixinJSBridge.invoke(
-       'getBrandWCPayRequest', ${jsapiParamJson},
-       function(res){
-           if(res.err_msg == "get_brand_wcpay_request:ok" ) {
-        	   alert("您的订单支付成功");
-        	   $("#winMessageBody").empty().html("<h4>您的订单支付成功,系统将回到商城首页</h4>").addClass("text-primary");
-				$("#winModal").modal({backdrop:"static",show:true});
-				window.setTimeout(function() {
-					window.location.replace("<c:url value='/pmall/index.html'/>");
-				}, 3000);
-           }else if(res.err_msg=="get_brand_wcpay_request:fail"){
-        	   alert("支付失败");
-           }else if(res.err_msg=="get_brand_wcpay_request:cancel"){
-        	   alert("支付已取消");
-           }
-       }
-   ); 
-}
-function callpay(){
-if (typeof WeixinJSBridge == "undefined"){
-   if( document.addEventListener ){
-       document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
-   }else if (document.attachEvent){
-       document.attachEvent('WeixinJSBridgeReady', onBridgeReady); 
-       document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
-   }
-}else{
-   onBridgeReady();
-}
-}
+<%--function onBridgeReady(){--%>
+   <%--WeixinJSBridge.invoke(--%>
+       <%--'getBrandWCPayRequest', ${jsapiParamJson},--%>
+       <%--function(res){--%>
+           <%--if(res.err_msg == "get_brand_wcpay_request:ok" ) {--%>
+        	   <%--alert("您的订单支付成功");--%>
+        	   <%--$("#winMessageBody").empty().html("<h4>您的订单支付成功,系统将回到商城首页</h4>").addClass("text-primary");--%>
+				<%--$("#winModal").modal({backdrop:"static",show:true});--%>
+				<%--window.setTimeout(function() {--%>
+					<%--window.location.replace("<c:url value='/pmall/index.html'/>");--%>
+				<%--}, 3000);--%>
+           <%--}else if(res.err_msg=="get_brand_wcpay_request:fail"){--%>
+        	   <%--alert("支付失败");--%>
+           <%--}else if(res.err_msg=="get_brand_wcpay_request:cancel"){--%>
+        	   <%--alert("支付已取消");--%>
+           <%--}--%>
+       <%--}--%>
+   <%--); --%>
+<%--}--%>
+<%--function callpay(){--%>
+<%--if (typeof WeixinJSBridge == "undefined"){--%>
+   <%--if( document.addEventListener ){--%>
+       <%--document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);--%>
+   <%--}else if (document.attachEvent){--%>
+       <%--document.attachEvent('WeixinJSBridgeReady', onBridgeReady); --%>
+       <%--document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);--%>
+   <%--}--%>
+<%--}else{--%>
+   <%--onBridgeReady();--%>
+<%--}--%>
+<%--}--%>
                
      </script>
 <body>
@@ -125,7 +153,7 @@ if (typeof WeixinJSBridge == "undefined"){
 		<div class="container">
 		<div class="row">
 			<div class="col-xs-12">
-			<h4 class="text-warning">你正在与咖盟和之初进行微信支付,请核对订单金额完成支付</h4>
+			<h4 class="text-warning">你正在与咖盟进行微信支付,请核对订单金额完成支付</h4>
 			<h6>订单编号：${order.orderNo}</h6>
 			<h3>付款金额：${order.actualPayment}元</h3>
 			</div>
@@ -150,7 +178,7 @@ if (typeof WeixinJSBridge == "undefined"){
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
-					<h4 class="modal-title" id="winModalLabel">和之初积分商城</h4>
+					<h4 class="modal-title" id="winModalLabel">咖盟置换系统</h4>
 				</div>
 				<div class="modal-body" id="winMessageBody"></div>
 			</div>

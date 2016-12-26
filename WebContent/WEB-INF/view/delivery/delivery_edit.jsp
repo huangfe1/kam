@@ -52,7 +52,6 @@
 
 
                         </div>
-				<c:if test="${!empty user.addresses}">asdasd</c:if>
                         <!--地址修改层-->
                     <c:if test="${!empty user.addresses&&parameter.entity.status==null}">
                             <div id="editPanel" class="panel panel-primary">

@@ -7,8 +7,8 @@ $(function() {
         height: "200px",                 //上传页面 宽度
         itemWidth: "120px",                 // 文件项的宽度
         itemHeight: "100px",                 // 文件项的高度
-        url: "http://localhost:8080/upload",  // 上传文件的路径
-        //url: "http://211.149.240.62/kam/upload",  // 上传文件的路径
+        // url: "http://localhost:8080/upload",  // 上传文件的路径
+        url: "http://www.kam365.com/kam/upload",  // 上传文件的路径
         multiple: true,                    // 是否可以多个文件上传
         dragDrop: true,                    // 是否可以拖动上传文件
         del: true,                    // 是否可以删除文件

@@ -273,16 +273,22 @@
 																.parseJSON(xhr.responseText);
 														btn.button("reset");
 														if (m.flag == "0") {
-															alert("下单成功"+m.message);
 															$(".quitBtn")
 																	.click();
+															var url=xhr.getResponseHeader("Location");
+															if(!url){//如果对象不存在
+                                                                if(confirm("下单成功,是否继续购物")){
+                                                                    location.href="<c:url value="/pmall/index.html"/>";
+                                                                }else{
+                                                                    location.href="<c:url value="/dmz/vmall/index.html"/>";
+                                                                }
+															}else{
+															    alert("提交成功，前去支付页面支付！");
+                                                                window.location=xhr.getResponseHeader("Location");
+															}
 //															$("#search")
 //																	.click();
-                                                            if(confirm("下单成功,是否继续购物")){
-                                                    location.href="<c:url value="/pmall/index.html"/>";
-                                                            }else{
-                                                                location.href="<c:url value="/dmz/vmall/index.html"/>";
-                                                            }
+
 														} else {
 															alert("发货申请失败,"+m.message);
 														}

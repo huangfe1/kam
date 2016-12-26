@@ -15,13 +15,13 @@ public class PayConfig {
 	
 	public static String CHARSET="UTF-8";
 	
-	private String key="#";
-	//微信分配的公众号ID（开通公众号之后可以获取到）  和之初的
+	private String key="huangfei08huanfgei99huangfei1234";
+	//微信分配的公众号ID（开通公众号之后可以获取到）
 	private String appID = "wx1fcc70173bf4edb2";
 
 	private String secret="d3fe4ba024fa5d64f78b4eae3f537b51";
 	//微信支付分配的商户号ID（开通公众号的微信支付功能之后可以获取到）
-	private String mchID = "";
+	private String mchID = "1419398602";
 
 	private String spbill_create_ip="211.149.240.62";
 	//受理模式下给子商户分配的子商户号
@@ -34,8 +34,8 @@ public class PayConfig {
 	private String certPassword = "";
 	
 	//通知URL
-//	private String notifyUrl="http://www.zmz365.com/dreamer/pay/wx/dmz/notify.html";
-	private String notifyUrl="#";
+	private String notifyUrl="http://www.kam365.com/kam/pay/wx/dmz/notify.html";
+//	private String notifyUrl="#";
 
 	private Date createTime;
 	

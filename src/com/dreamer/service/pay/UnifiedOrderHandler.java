@@ -12,6 +12,8 @@ import com.dreamer.domain.user.Agent;
 import com.dreamer.service.pay.param.PayUnifiedOrderReqData;
 import com.dreamer.service.pay.param.UnifiedOrderResData;
 
+import java.math.BigDecimal;
+
 @Service
 public class UnifiedOrderHandler {
 
@@ -26,7 +28,19 @@ public class UnifiedOrderHandler {
 			param.setMch_id(payConfig.getMchID());
 			param.setNonce_str(RandomStringGenerator
 					.getRandomStringByLength(32));
-			param.setTotal_fee((new Double(order.getActualPayment() * 100))
+			Double myAdvance = agent.getAccounts().getAdvanceBalance();
+			// 进行加法运算
+			BigDecimal b1 = new BigDecimal(Double.toString(myAdvance));
+			BigDecimal b2 = new BigDecimal(Double.toString(order.getTotalPoints()));
+			BigDecimal b3 = new BigDecimal(Double.toString(order.getActualPayment()));
+			Double sub=b1.subtract(b2).doubleValue();
+			Double money;
+//			if(sub>=0){//置换券充足
+//				money=order.getActualPayment();//现金价
+//			}else{//置换券不足
+				order.setDiscountAmount(-b3.add(b2).doubleValue());//增加额外价格
+//			}
+ 			param.setTotal_fee((new Double(order.getActualPayment() * 100))
 					.intValue());
 			param.setSpbill_create_ip(payConfig.getSpbill_create_ip());
 			param.setNotify_url(payConfig.getNotifyUrl());

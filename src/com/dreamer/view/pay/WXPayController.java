@@ -96,7 +96,7 @@ public class WXPayController {
 				agent.setWxOpenid(openid);
 				agentHandler.setWxOpenIdTo(agent, openid);
 			}
-			UnifiedOrderResData unifiedOrder=unifiedOrderHandler.unifiedOrder(payConfig,agent, order, "和之初积分商城订单");
+			UnifiedOrderResData unifiedOrder=unifiedOrderHandler.unifiedOrder(payConfig,agent, order, "咖盟置换系统");
 			if(unifiedOrder.getReturn_code().equals("FAIL")){
 				LOG.error("统一下单调用失败 {}",unifiedOrder.getReturn_msg());
 				model.addAttribute("errorMsg", "统一下单支付失败,请稍后重试"+unifiedOrder.getReturn_msg());
@@ -105,7 +105,7 @@ public class WXPayController {
 			String jsonParam=JsonUtil.mapToJsonStr(jsApiParameterFactory.build(payConfig, unifiedOrder.getPrepay_id()));
 			LOG.debug("JSAPI Param：{}",jsonParam);
 			model.addAttribute("jsapiParamJson",jsonParam);
-			
+
 		} catch (Exception exp) {
 			exp.printStackTrace();
 			LOG.error("APP支付获取预支付码异常",exp);

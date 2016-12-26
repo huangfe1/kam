@@ -136,22 +136,22 @@
                                 <div class="col-md-4 col-xs-4 text-error"></div>
                             </div>
                             <div class="form-group" >
-                                <label for="currentPoint" class="col-sm-2 control-label">所需置换券</label>
+                                <label for="currentPoint" class="col-sm-2 control-label">置换券</label>
                                 <div class="col-sm-4">
                                     <input type="number" class="form-control" id="editPointPrice" tabIndex="13"
                                            name="pointPrice" value="${parameter.entity.pointPrice}"
-                                           placeholder="输入购买本商品所需积分">
-                                    <span class="help-block">消费时的置换券</span>
+                                           placeholder="置换券">
+                                    <span class="help-block">置换券</span>
                                 </div>
                                 <div class="col-md-4 col-xs-4 text-error"></div>
                             </div>
-                            <div class="form-group" style="display: none">
-                                <label for="currentBalance" class="col-sm-2 control-label">折扣价格</label>
+                            <div class="form-group" >
+                                <label for="currentBalance" class="col-sm-2 control-label">使用置换券时的价格</label>
                                 <div class="col-sm-4">
                                     <input type="number" class="form-control" id="editMoneyPrice" tabIndex="14"
-                                           name="moneyPrice" value="1"
-                                           placeholder="输入商品折扣价格">
-                                    <span class="help-block">折扣价格</span>
+                                           name="moneyPrice" value="${parameter.entity.moneyPrice}"
+                                           placeholder="使用置换券时的价格">
+                                    <span class="help-block">使用置换券时的价格</span>
                                 </div>
                                 <div class="col-md-4 col-xs-4 text-error"></div>
                             </div>
@@ -191,7 +191,7 @@
                                 <label for="editStockQuantity" class="col-sm-2 control-label">当前库存</label>
                                 <div class="col-sm-4">
                                     <input type="number" class="form-control" id="editStockQuantity" tabIndex="17"
-                                           name="stockQuantity" value="0"
+                                           name="stockQuantity" value="${parameter.entity.stockQuantity}"
                                            placeholder="输入商品当前库存">
                                 </div>
                                 <div class="col-md-4 col-xs-4 text-error"></div>

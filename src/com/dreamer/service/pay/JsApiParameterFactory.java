@@ -4,13 +4,14 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Objects;
 
 @Service
 public class JsApiParameterFactory {
 
 
 	/**
-	 * 微信支付参数
+	 * 微信支付参数  这里的timeStamp是大写  签名需要大写  其余jssdk是小写
 	 * @param payConfig
 	 * @param prepayId
      * @return
@@ -23,6 +24,37 @@ public class JsApiParameterFactory {
 		jsapiParam.put("package", "prepay_id="+prepayId);
 		jsapiParam.put("signType", "MD5");
 		jsapiParam.put("paySign", Signature.getSign(jsapiParam, payConfig.getKey()));
+		return jsapiParam;
+	}
+
+	/**
+	 * 微信支付参数  这里的timeStamp是大写  签名需要大写  其余jssdk是小写
+	 * @param payConfig
+	 * @param prepayId
+	 * @return
+	 */
+	public HashMap<String,Object> buildConfigAndPay(PayConfig payConfig,String url,String jsapi_ticket,String prepayId){
+		String timeStamp=String.valueOf(System.currentTimeMillis()/1000);
+		String nonceStr= RandomStringGenerator.getRandomStringByLength(32);
+		//支付需要的参数
+		HashMap<String,Object> jsapiParam=new HashMap<String,Object>();
+		jsapiParam.put("appId", payConfig.getAppID());
+		jsapiParam.put("timeStamp", timeStamp);//大写s
+		jsapiParam.put("nonceStr", nonceStr);
+		jsapiParam.put("package", "prepay_id="+prepayId);
+		jsapiParam.put("signType", "MD5");
+		jsapiParam.put("paySign", Signature.getSign(jsapiParam, payConfig.getKey()));
+		//jssdk配置需要的参数
+		HashMap<String,Object> signParam=new HashMap<>();
+		signParam.put("url", url);
+		signParam.put("timestamp", timeStamp);
+		signParam.put("noncestr",nonceStr);//小写
+		signParam.put("jsapi_ticket", jsapi_ticket);
+		String addrSign= Signature.getSHA1Sign(signParam);
+		signParam.put("debug",false);
+		signParam.put("appId",payConfig.getAppID());
+		signParam.put("signature",addrSign);
+		jsapiParam.putAll(signParam);
 		return jsapiParam;
 	}
 
