@@ -86,6 +86,9 @@ public class OrderPayHandler {
 			MallGoods goods=mallGoodsDAO.findById(entry.getKey());
 			if(goods.getStockQuantity()>=entry.getValue().getQuantity())//库存足够的时候在减少库存,有些偏差
 			goods.deductCurrentStock(entry.getValue().getQuantity());
+			if(goods.getStockQuantity()==0){//库存不足
+                goods.setShelf(false);//下架
+            }
 		});
 	}
 

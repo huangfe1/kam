@@ -1,25 +1,18 @@
 package com.dreamer.view.goods;
 
-import java.util.Optional;
-
-import javax.servlet.http.HttpServletRequest;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
-import ps.mx.otter.utils.WebUtil;
-import ps.mx.otter.utils.message.Message;
-
 import com.dreamer.domain.goods.StockBlotter;
 import com.dreamer.domain.user.Admin;
 import com.dreamer.repository.goods.GoodsDAO;
 import com.dreamer.repository.goods.StockBlotterDAO;
 import com.dreamer.service.goods.GoodsHandler;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+import ps.mx.otter.utils.WebUtil;
+import ps.mx.otter.utils.message.Message;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/stock")
@@ -27,10 +20,13 @@ public class StockBlotterController {
 
 	
 	@RequestMapping(value={"/edit.json"},method=RequestMethod.POST)
-	public Message edit_enter(@ModelAttribute("stockBlotter")StockBlotter stock,Model model,HttpServletRequest request){
+	public Message edit_enter(@ModelAttribute("stockBlotter")StockBlotter stock,Model model,boolean add,HttpServletRequest request){
 		try{
 			Admin user=(Admin)WebUtil.getCurrentUser(request);
 			stock.setUser(user);
+			if(!add){
+				stock.setChange(-stock.getChange());
+			}
 			goodsHandler.addStock(stock);
 			return Message.createSuccessMessage("新增库存成功");
 		}catch(Exception exp){

@@ -43,6 +43,7 @@ padding-bottom:10px;
 						<h5>规格:${goods.spec}</h5>
 						<h6>原价:<del><small class="text-muted"><span class="glyphicon glyphicon-yen"></span>${goods.price}</small></del></h6>
 						<h5 class="text-danger">置换券:<span class="fa fa-rmb"></span><strong>${goods.pointPrice}</strong></h5>
+						<h5 class="text-danger">库存:<span ></span><strong>${goods.stockQuantity}</strong></h5>
 						<%--<h5 class="text-danger">分享可获得:<span class="fa fa-rmb"></span><strong>${fn:replace(goods.vouchers, , )}元</strong></h5>--%>
 					</div>
 
@@ -53,7 +54,7 @@ padding-bottom:10px;
 					<div class="input-group">
 						<span class="input-group-btn">
 							<button class="btn btn-default minsBtn" id="minsBtn" type="button">-</button>
-						</span> <input type="number" value="1" style="text-align:center;width:120px"
+						</span> <input type="number" value="1"
 							class="form-control quantity"
 							name="quantity"> <span class="input-group-btn">
 							<button class="btn btn-default addBtn" id="addBtn" type="button">+</button>
@@ -284,6 +285,12 @@ padding-bottom:10px;
 		});
 		$(".quantity").change(function(e){
 			var $this=$(this);
+			var stock=${goods.stockQuantity}
+			if($this.val()>stock){
+				alert("库存不足,当前库存"+stock);
+                $this.val(stock);
+			}
+
 			if(!parseInt($this.val())){
 				$this.val(1);
 			}

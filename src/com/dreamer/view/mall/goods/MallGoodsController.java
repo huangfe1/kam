@@ -34,7 +34,7 @@ public class MallGoodsController {
 			if (!user.isAdmin()) {
 				LOG.error("非管理员身份,无积分商城商品编辑权限");
 				throw new NotAuthorizationException(); 
-			} 
+			}
 				if(Objects.isNull(file)||file.isEmpty()){
 					mallGoodsHandler.addMallGoods(parameter,null,null);
 				}else{

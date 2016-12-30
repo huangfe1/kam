@@ -294,7 +294,12 @@ public class AgentHandlerImpl implements AgentEventSource, AgentHandler{
 	public void transferAdvance(User operator, AdvanceTransfer transfer,
 								String toAgentCode, String toAgentName, Double advance) {
 		// TODO Auto-generated method stub
-		Agent toAgent=agentDAO.findByAgentCode(toAgentCode);
+		Agent toAgent;
+		if(toAgentCode.equals("01")){
+			toAgent=mutedUserDAO.loadFirstOne();
+		}else {
+			toAgent = agentDAO.findByAgentCode(toAgentCode);
+		}
 		Agent fromAgent=(Agent)transfer.getUserByFromAgent();
 		if(Objects.isNull(toAgent)){
 			throw new DataNotFoundException("代理编号对应的代理不存在");

@@ -50,7 +50,7 @@
                                 <div class="col-md-4 col-xs-4 text-error"></div>
                             </div>
 
-                            <!--产品的利润-->
+                            <!--产品的利润sa -->
                             <div class="form-group" style="display: none">
                                 <label for="profit" class="col-sm-2 control-label">毛利润</label>
                                 <div class="col-sm-6">

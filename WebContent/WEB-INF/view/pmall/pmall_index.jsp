@@ -108,6 +108,7 @@
             sans-serif;
             color:#fff;
         }
+
         .media{
             font-family: Tahoma, Helvetica, Arial, "Microsoft Yahei", STXihei,
             sans-serif;
@@ -124,6 +125,22 @@
         }
         .media{
             border-bottom:1px solid #e0e0e0;
+        }
+
+        .left-search {
+            padding-right: 0;
+            left: 5px;
+            right: 55px;
+        }
+        .navbar-search {
+            height: 100%;
+            top: 0;
+            position: absolute;
+            width: auto !important;
+        }
+        .nav-right {
+            right: 5px;
+            text-align: center;
         }
     </style>
 </head>
@@ -183,6 +200,22 @@
 
     <%--</div>--%>
 <%--</header>--%>
+
+<header class="header">
+    <div class="fix_nav">
+        <div style="max-width:100%;margin:0 auto;height: 44px;position: relative;background:#000000;">
+            <form action="/m_search/list" method="get" id="searchform" name="searchform">
+                <div class="navbar-search left-search">
+                    <input type="text" id="keyword" name="keyword" value="" placeholder="搜索商品" class="form-control">
+                </div>
+                <div class="nav-right">
+                    <input type="button" value="搜索" onclick="searchproduct();" class="img-responsive" style="text-align:center;background:#ccc;border-radius: 5px;border:none;height:34px;vertical-align:middle;clear:both;padding:0px;width:42px;">
+                </div>
+            </form>
+        </div>
+    </div>
+</header>
+
 <div class="container" id="nav">
     <div class="row">
         <div class="col-xs-4">
@@ -344,6 +377,7 @@
 														'<h6><span class="fa fa-rmb"></span>'+data.pointPrice+'置换券</h6>'+
                                     '<h6><span class="fa fa-rmb"></span>'+data.moneyPrice+'现金</h6>'+
                                     '<h6><del><small class="text-muted">原价:'+data.price+'</small></del></h6>'+
+                                    '<h6><span >库存:</span>'+data.stockQuantity+'</h6>'+
 //                                    '<h6><span class="fa fa-rmb">分享利润:</span>'+data.vouchers.substring(0,6)+'</h6>'+
                                     '<h6><a href="#" class="btn btn-link buyBtn pull-right" style="color:red!important;" role="button" data-id='+data.id+
                                     '><span class="fa fa-shopping-cart fa-2x"></span></a></h6></div></a>';

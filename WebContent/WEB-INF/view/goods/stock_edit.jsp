@@ -16,7 +16,7 @@
 				aria-label="Close">
 				<span aria-hidden="true">&times;</span>
 			</button>
-			<h4 class="modal-title text-primary" id="myModalLabel">增加库存</h4>
+			<h4 class="modal-title text-primary" id="myModalLabel">增减库存</h4>
 		</div>
 		<div class="modal-body">
 			<div class="container-fluid">
@@ -27,7 +27,7 @@
 					<div class="col-md-12 col-xs-12">
 					<div class="panel panel-primary">
 							<div class="panel-heading">
-								增加库存
+								增减库存
 							</div>
 							<div class="panel-body">						
 							<input type="hidden" name="goods.id" value="${stockBlotter.entity.goods.id}">
@@ -47,7 +47,7 @@
 								<div class="col-md-4 col-xs-4 text-error"></div>
 							</div>
 							<div class="form-group">
-								<label for="currentStock" class="col-sm-2 control-label">增加库存</label>
+								<label for="currentStock" class="col-sm-2 control-label">变更数量</label>
 								<div class="col-sm-4">
 									<input type="number" class="form-control" id="editCurrentStock" tabIndex="12"
 										name="change" value="${stockBlotter.entity.change}"
@@ -55,6 +55,22 @@
 								</div>
 								<div class="col-md-4 col-xs-4 text-error"></div>
 							</div>
+								<div class="form-group">
+									<label for="currentStock" class="col-sm-2 control-label">增加/减少</label>
+									<div class="col-sm-2">
+										<label class="checkbox-inline">
+											<input type="radio" name="add" id="optionsRadios4" value="true" checked>&nbsp;增加
+										</label>
+
+									</div>
+									<div class="col-sm-2">
+										<label class="checkbox-inline">
+											<input type="radio" name="add" id="optionsRadios3" value="false" >&nbsp;减少
+										</label>
+
+									</div>
+									<div class="col-md-4 col-xs-4 text-error"></div>
+								</div>
 							<div class="form-group">
 								<label for="currentPoint" class="col-sm-2 control-label">单价</label>
 								<div class="col-sm-4">

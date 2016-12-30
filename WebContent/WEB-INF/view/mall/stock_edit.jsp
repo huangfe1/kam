@@ -55,6 +55,23 @@
 								</div>
 								<div class="col-md-4 col-xs-4 text-error"></div>
 							</div>
+
+								<div class="form-group">
+									<label for="currentStock" class="col-sm-2 control-label">增加/减少</label>
+									<div class="col-sm-2">
+										<label class="checkbox-inline">
+											<input type="radio" name="add" id="optionsRadios4" value="true" checked>&nbsp;增加
+										</label>
+
+									</div>
+									<div class="col-sm-2">
+										<label class="checkbox-inline">
+											<input type="radio" name="add" id="optionsRadios3" value="false" >&nbsp;减少
+										</label>
+
+									</div>
+									<div class="col-md-4 col-xs-4 text-error"></div>
+								</div>
 							
 							<div class="form-group">
 								<label for="currentBalance" class="col-sm-2 control-label">备注</label>

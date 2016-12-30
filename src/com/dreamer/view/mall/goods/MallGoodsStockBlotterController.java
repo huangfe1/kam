@@ -1,25 +1,18 @@
 package com.dreamer.view.mall.goods;
 
-import java.util.Optional;
-
-import javax.servlet.http.HttpServletRequest;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
-import ps.mx.otter.utils.WebUtil;
-import ps.mx.otter.utils.message.Message;
-
 import com.dreamer.domain.mall.goods.MallGoodsStockBlotter;
 import com.dreamer.domain.user.Admin;
 import com.dreamer.repository.mall.goods.MallGoodsDAO;
 import com.dreamer.repository.mall.goods.MallGoodsStockBlotterDAO;
 import com.dreamer.service.mall.goods.MallGoodsHandler;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+import ps.mx.otter.utils.WebUtil;
+import ps.mx.otter.utils.message.Message;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/stock/pm")
@@ -27,8 +20,11 @@ public class MallGoodsStockBlotterController {
 
 	
 	@RequestMapping(value={"/edit.json"},method=RequestMethod.POST)
-	public Message edit_enter(@ModelAttribute("stockBlotter")MallGoodsStockBlotter stock,Model model,HttpServletRequest request){
+	public Message edit_enter(@ModelAttribute("stockBlotter")MallGoodsStockBlotter stock,Model model,HttpServletRequest request,boolean add){
 		try{
+			if(!add){
+				stock.setChange(-stock.getChange());
+			}
 			Admin user=(Admin)WebUtil.getCurrentUser(request);
 			stock.setUser(user);
 			goodsHandler.addStock(stock);

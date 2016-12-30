@@ -66,7 +66,7 @@ public class MallGoods implements java.io.Serializable {
 	}
 	
 	public Integer increaseCurrentStock(Integer added){
-		if(added>0){
+		if(added+getStockQuantity()>0){
 			stockQuantity=(stockQuantity+added);
 		}
 		return stockQuantity;

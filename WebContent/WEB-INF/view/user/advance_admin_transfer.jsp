@@ -167,10 +167,11 @@
 									},
 									error : function(xhr, textStatus,
 													 errorThrown) {
-										var m = $.parseJSON(xhr.responseText);
-										$("#alert").empty().html(m.message)
-												.removeClass("invisible");
-										btn.button("reset");
+									    alert(xhr.responseText);
+//										var m = $.parseJSON(xhr.responseText);
+//										$("#alert").empty().html(m.message)
+//												.removeClass("invisible");
+//										btn.button("reset");
 									}
 								});
 					},
